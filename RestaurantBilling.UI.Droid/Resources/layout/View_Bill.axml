@@ -3,11 +3,17 @@
     xmlns:local="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#00007f"
+    android:textColor="#ffffff"
+    android:textSize="24dp"
+    android:layout_margin="20dp"
+    android:padding="20dp"
+    android:layout_marginTop="10dp">
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Customer Email" />
+        android:text="Email" />
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -29,24 +35,36 @@
         android:layout_height="wrap_content"
         android:max="100"
         local:MvxBind="Progress Gratuity" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="#ffff00" />
+        android:background="#ffff00"
+        android:id="@+id/view2" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Tip" />
+        android:text="Tip"
+        android:id="@+id/textView2" />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        local:MvxBind="Text Tip" />
+        local:MvxBind="Text Tip"
+        android:text="0.00" />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Total" />
+        android:text="Total"
+        android:id="@+id/textView1" />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        local:MvxBind="Text Total" />
+        local:MvxBind="Text Total"
+        android:text="0.00"
+        android:id="@+id/textView3" />
 </LinearLayout>

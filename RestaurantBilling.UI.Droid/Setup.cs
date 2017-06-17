@@ -17,7 +17,6 @@ namespace RestaurantBilling.UI.Droid
 	/// </summary>
 	public class Setup : MvxAndroidSetup
 	{
-
 		public Setup(Context applicationContext) : base(applicationContext)
 		{
 		}
@@ -26,5 +25,16 @@ namespace RestaurantBilling.UI.Droid
 		{
 			return new App();
 		}
+
+        protected override void InitializeFirstChance()
+        {
+            base.InitializeFirstChance();
+        }
+
+        protected override void InitializeLastChance()
+        {
+            base.InitializeLastChance();
+        }
+
 	}
 }

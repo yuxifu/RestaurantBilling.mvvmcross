@@ -18,17 +18,25 @@ namespace RestaurantBilling.Core
         /// </summary>
         public App()
         {
-            // Whenever Mvx.Resolve is used, a new instance of Calculation is provided.
-            Mvx.RegisterType<IBillCalculator, BillCalculator>();
-            var calcExample = Mvx.Resolve<IBillCalculator>();
+			// Registers the interfaces and implementations the app uses.
+			Mvx.RegisterType<IBillCalculator, BillCalculator>();
+			// Whenever Mvx.Resolve is used, a new instance of Calculation is provided. Not needed here.
+			// var calcExample = Mvx.Resolve<IBillCalculator>();
 
-            // Tells the MvvmCross framework that whenever any code requests an IMvxAppStart reference,
-            // the framework should return that same appStart instance.
-            var appStart = new CustomAppStart();
+			// Tells the MvvmCross framework that whenever any code requests an IMvxAppStart reference,
+			// the framework should return that same appStart instance.
+			var appStart = new CustomAppStart();
             Mvx.RegisterSingleton<IMvxAppStart>(appStart);
 
-            // Another option is to utilize a default App Start object with 
+            // or, if no custom app start is required, we can 
+            // utilize a default App Start object with 
             // var appStart = new MvxAppStart<TipViewModel>();
         }
+
+        public override void Initialize()
+        {
+            base.Initialize();
+        }
+
     }
 }

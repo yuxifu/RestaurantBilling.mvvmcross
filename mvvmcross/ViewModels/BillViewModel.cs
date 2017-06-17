@@ -1,17 +1,16 @@
-﻿using System;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using MvvmCross.Core.ViewModels;
 using RestaurantBilling.Core.Services;
 
 namespace RestaurantBilling.Core.ViewModels
 {
-	/// <summary>
-	/// All view models should inherit from MvxViewModel in MVVMCross
-	/// </summary>
-	public class BillViewModel : MvxViewModel
+    /// <summary>
+    /// All view models should inherit from MvxViewModel in MVVMCross
+    /// </summary>
+    public class BillViewModel : MvxViewModel
 	{
 		readonly IBillCalculator _calculation;
-		private string _customerEmail;
+		string _customerEmail;
 		double _subTotal;
 		int _gratuity;
 		double _tip;

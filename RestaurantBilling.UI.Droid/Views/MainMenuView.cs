@@ -3,7 +3,7 @@ using MvvmCross.Droid.Views;
 
 namespace RestaurantBilling.UI.Droid.Views
 {
-	[Activity(Label = "Main Menu OK")]
+	[Activity(Label = "Main Menu")]
 	public class MainMenuView : MvxActivity
 	{
 		/// <summary>

@@ -7,6 +7,8 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="Create Bill"
-        android:textSize="40dp"
-        local:MvxBind="Click NavigateCreateBill" />
+        android:textSize="20dp"
+        local:MvxBind="Click NavigateCreateBill"
+        android:textStyle="normal"
+        android:textAllCaps="false" />
 </LinearLayout>
