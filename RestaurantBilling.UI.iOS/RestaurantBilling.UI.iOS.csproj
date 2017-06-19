@@ -132,6 +132,8 @@
     <InterfaceDefinition Include="Views\BillView.xib" />
     <InterfaceDefinition Include="Views\MainMenuView.xib" />
     <InterfaceDefinition Include="Main.storyboard" />
+    <InterfaceDefinition Include="Views\BillCell.xib" />
+    <InterfaceDefinition Include="Views\AllBillsView.xib" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -150,6 +152,12 @@
       <DependentUpon>MainMenuView.cs</DependentUpon>
     </Compile>
     <Compile Include="Main.cs" />
+    <Compile Include="FileAccessHelper.cs" />
+    <Compile Include="Views\BillCell.cs" />
+    <Compile Include="Views\BillCell.designer.cs">
+      <DependentUpon>BillCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AllBillsView.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\mvvmcross\RestaurantBilling.Core.csproj">

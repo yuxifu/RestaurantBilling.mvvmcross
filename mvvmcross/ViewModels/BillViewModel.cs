@@ -1,51 +1,36 @@
-﻿using System.Windows.Input;
-using MvvmCross.Core.ViewModels;
+﻿using MvvmCross.Core.ViewModels;
+using MvvmCross.Platform;
+using RestaurantBilling.Core.Models;
 using RestaurantBilling.Core.Services;
+using System.Windows.Input;
 
 namespace RestaurantBilling.Core.ViewModels
 {
-    /// <summary>
-    /// All view models should inherit from MvxViewModel in MVVMCross
-    /// </summary>
-    public class BillViewModel : MvxViewModel
+	/// <summary>
+	/// All view models inherit from MvxViewModel in MVVMCross
+	/// </summary>
+	public class BillViewModel : MvxViewModel
 	{
 		readonly IBillCalculator _calculation;
-		string _customerEmail;
-		double _subTotal;
+		Bill _bill;
 		int _gratuity;
-		double _tip;
-		double _total;
-
-		/// <summary>
-		/// Used to implement button commanding for navigation.
-		/// </summary>
-		public ICommand NavBack
-		{
-			get
-			{
-				return new MvxCommand(() => Close(this));
-			}
-		}
 
 		public string CustomerEmail
 		{
-			get { return _customerEmail; }
+			get { return _bill.CustomerEmail; }
 			set
 			{
-				_customerEmail = value;
-
-				// This notifies the framework when a change occurs.
-				// It is required for any data bound properties that are updated.
+				_bill.CustomerEmail = value;
 				RaisePropertyChanged(() => CustomerEmail);
 			}
 		}
 
 		public double SubTotal
 		{
-			get { return _subTotal; }
+			get { return _bill.SubTotal; }
 			set
 			{
-				_subTotal = value;
+				_bill.SubTotal = value;
 				RaisePropertyChanged(() => SubTotal);
 				Recalculate();
 			}
@@ -64,20 +49,20 @@ namespace RestaurantBilling.Core.ViewModels
 
 		public double Tip
 		{
-			get { return _tip; }
+			get { return _bill.Tip; }
 			set
 			{
-				_tip = value;
+				_bill.Tip = value;
 				RaisePropertyChanged(() => Tip);
 			}
 		}
 
 		public double Total
 		{
-			get { return _total; }
+			get { return _bill.AmountPaid; }
 			set
 			{
-				_total = value;
+				_bill.AmountPaid = value;
 				RaisePropertyChanged(() => Total);
 			}
 		}
@@ -85,33 +70,45 @@ namespace RestaurantBilling.Core.ViewModels
 		/// <summary>
 		/// Use constructor injection to supply _calculation with the implementation.
 		/// </summary>
+		/// <param name="calculation"></param>
 		public BillViewModel(IBillCalculator calculation)
 		{
 			_calculation = calculation;
 		}
 
-		/// <summary>
-		/// Demonstrates the ability to pass parameters to MvvmCross view models.
-		/// </summary>
-		/// <param name="subTotal">The bill sub-total.</param>
-		public void Init(int subTotal)
+		public ICommand NavBack
 		{
-			SubTotal = subTotal;
+			get
+			{
+				return new MvxCommand(() => Close(this));
+			}
 		}
 
-		/// <summary>
-		/// Override the start method to perform view model initialization.
-		/// </summary>
-		public override void Start()
+		public ICommand SaveBill
 		{
-			_gratuity = 10;
-			Recalculate();
-			base.Start();
+			get
+			{
+				return new MvxCommand(() =>
+				{
+					if (_bill.IsValid())
+					{
+						// Here we are simply waiting for the thread to complete.
+						// In a production app, this would be the opportunity to
+						// provide UI updates while the save thread completes.
+						Mvx.Resolve<Repository>().CreateBill(_bill).Wait();
+						Close(this);
+					}
+				});
+			}
 		}
 
-		/// <summary>
-		/// Use the bill calculator to calculate the tip and total.
-		/// </summary>
+		public void Init(Bill bill = null)
+		{
+			_bill = bill ?? new Bill();
+			_gratuity = (int)_calculation.Gratuity(_bill.SubTotal, bill.Tip);
+			RaiseAllPropertiesChanged();
+		}
+
 		void Recalculate()
 		{
 			Tip = _calculation.TipAmount(SubTotal, Gratuity);

@@ -1,6 +1,7 @@
 ﻿using MvvmCross.Core.ViewModels;
 using MvvmCross.iOS.Platform;
 using MvvmCross.iOS.Views.Presenters;
+using MvvmCross.Platform;
 using RestaurantBilling.Core;
 
 namespace RestaurantBilling.UI.iOS
@@ -24,7 +25,9 @@ namespace RestaurantBilling.UI.iOS
 
 		protected override IMvxApplication CreateApp()
 		{
-			return new App();
+			var dbConn = FileAccessHelper.GetLocalFilePath("restaurant.db3");
+			Mvx.RegisterSingleton(new Repository(dbConn));
+			return new Core.App();
 		}
 	}
 }

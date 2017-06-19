@@ -23,6 +23,7 @@ namespace RestaurantBilling.UI.iOS.Views
 			// It means: Bind the TipLabel's default binding property (Text in this case) to the ViewModel's Tip property.
 			// 2-way binding by default.
 			this.CreateBinding(VCCreateBill).To((MainMenuViewModel vm) => vm.NavigateCreateBill).Apply();
+            this.CreateBinding(VCViewBills).To((MainMenuViewModel vm) => vm.NavigateAllBills).Apply();
         }
 
         public override void DidReceiveMemoryWarning()

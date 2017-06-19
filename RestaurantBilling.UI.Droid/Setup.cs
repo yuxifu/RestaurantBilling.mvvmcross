@@ -1,6 +1,7 @@
 ﻿using Android.Content;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Droid.Platform;
+using MvvmCross.Platform;
 using RestaurantBilling.Core;
 
 namespace RestaurantBilling.UI.Droid
@@ -23,6 +24,8 @@ namespace RestaurantBilling.UI.Droid
 
 		protected override IMvxApplication CreateApp()
 		{
+			var dbConn = FileAccessHelper.GetLocalFilePath("restaurant.db3");
+			Mvx.RegisterSingleton(new Repository(dbConn));
 			return new App();
 		}
 

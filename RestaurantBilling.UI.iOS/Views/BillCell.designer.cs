@@ -7,28 +7,19 @@
 using Foundation;
 using System;
 using System.CodeDom.Compiler;
-using UIKit;
 
 namespace RestaurantBilling.UI.iOS.Views
 {
-    [Register ("BillView")]
-    partial class BillView
+    [Register ("BillCell")]
+    partial class BillCell
     {
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UITextField VCEmail { get; set; }
+        UIKit.UILabel VCCustomerEmail { get; set; }
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UISlider VCGratuity { get; set; }
-
-        [Outlet]
-        [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UIButton VCSave { get; set; }
-
-        [Outlet]
-        [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UITextField VCSubTotal { get; set; }
+        UIKit.UILabel VCSubTotal { get; set; }
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
@@ -40,19 +31,9 @@ namespace RestaurantBilling.UI.iOS.Views
 
         void ReleaseDesignerOutlets ()
         {
-            if (VCEmail != null) {
-                VCEmail.Dispose ();
-                VCEmail = null;
-            }
-
-            if (VCGratuity != null) {
-                VCGratuity.Dispose ();
-                VCGratuity = null;
-            }
-
-            if (VCSave != null) {
-                VCSave.Dispose ();
-                VCSave = null;
+            if (VCCustomerEmail != null) {
+                VCCustomerEmail.Dispose ();
+                VCCustomerEmail = null;
             }
 
             if (VCSubTotal != null) {

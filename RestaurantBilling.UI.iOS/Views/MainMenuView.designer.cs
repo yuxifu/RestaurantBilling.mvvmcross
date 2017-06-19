@@ -18,11 +18,20 @@ namespace RestaurantBilling.UI.iOS.Views
         [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UIButton VCCreateBill { get; set; }
 
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIButton VCViewBills { get; set; }
+
         void ReleaseDesignerOutlets ()
         {
             if (VCCreateBill != null) {
                 VCCreateBill.Dispose ();
                 VCCreateBill = null;
+            }
+
+            if (VCViewBills != null) {
+                VCViewBills.Dispose ();
+                VCViewBills = null;
             }
         }
     }

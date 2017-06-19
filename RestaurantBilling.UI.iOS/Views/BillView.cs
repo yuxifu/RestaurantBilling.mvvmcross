@@ -28,6 +28,7 @@ namespace RestaurantBilling.UI.iOS.Views
 			this.CreateBinding(VCGratuity).To((BillViewModel vm) => vm.Gratuity).Apply();
 			this.CreateBinding(VCTip).To((BillViewModel vm) => vm.Tip).Apply();
 			this.CreateBinding(VCTotal).To((BillViewModel vm) => vm.Total).Apply();
+            this.CreateBinding(VCSave).To((BillViewModel vm) => vm.SaveBill).Apply();
 			
 			// This ensures that the virtual keyboard is closed after text input.
 			View.AddGestureRecognizer(new UITapGestureRecognizer(() =>

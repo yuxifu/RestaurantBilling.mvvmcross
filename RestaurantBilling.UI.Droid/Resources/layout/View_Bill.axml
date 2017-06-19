@@ -35,36 +35,29 @@
         android:layout_height="wrap_content"
         android:max="100"
         local:MvxBind="Progress Gratuity" />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="#ffff00"
-        android:id="@+id/view2" />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:background="#ffff00" />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Tip"
-        android:id="@+id/textView2" />
+        android:text="Tip" />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        local:MvxBind="Text Tip"
-        android:text="0.00" />
+        local:MvxBind="Text Tip" />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Total"
-        android:id="@+id/textView1" />
+        android:text="Total" />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        local:MvxBind="Text Total"
-        android:text="0.00"
-        android:id="@+id/textView3" />
+        local:MvxBind="Text Total" />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Save"
+        local:MvxBind="Click SaveBill" />
 </LinearLayout>
