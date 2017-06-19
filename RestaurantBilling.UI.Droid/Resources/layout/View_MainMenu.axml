@@ -26,4 +26,13 @@
         local:MvxBind="Click NavigateAllBills"
         android:textStyle="normal"
         android:textAllCaps="false" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView1"
+        local:MvxBind="Text OSName"
+        android:fadingEdge="none"
+        android:background="#ffcdcdcd"
+        android:text="platform name"
+        android:textColor="#ff000000" />
 </LinearLayout>

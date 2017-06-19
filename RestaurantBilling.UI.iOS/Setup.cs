@@ -1,4 +1,5 @@
-﻿using MvvmCross.Core.ViewModels;
+﻿using mvvmcross.Services;
+using MvvmCross.Core.ViewModels;
 using MvvmCross.iOS.Platform;
 using MvvmCross.iOS.Views.Presenters;
 using MvvmCross.Platform;
@@ -28,6 +29,20 @@ namespace RestaurantBilling.UI.iOS
 			var dbConn = FileAccessHelper.GetLocalFilePath("restaurant.db3");
 			Mvx.RegisterSingleton(new Repository(dbConn));
 			return new Core.App();
+		}
+
+        protected override void InitializeLastChance()
+        {
+            base.InitializeLastChance();
+
+            //register a singleton instance 
+            Mvx.RegisterSingleton<IPlatform>(new Platform());
+
+            //lazy initialization
+            //Mvx.RegisterSingleton<IPlatform>(() => new Platform());
+
+            //dynamic initialization
+            //Mvx.RegisterType<IPlatform, Platform>();
 		}
 	}
 }

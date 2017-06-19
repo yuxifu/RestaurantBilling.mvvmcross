@@ -1,4 +1,5 @@
 ﻿using Android.Content;
+using mvvmcross.Services;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Droid.Platform;
 using MvvmCross.Platform;
@@ -26,7 +27,7 @@ namespace RestaurantBilling.UI.Droid
 		{
 			var dbConn = FileAccessHelper.GetLocalFilePath("restaurant.db3");
 			Mvx.RegisterSingleton(new Repository(dbConn));
-			return new App();
+            return new App();
 		}
 
         protected override void InitializeFirstChance()
@@ -37,7 +38,9 @@ namespace RestaurantBilling.UI.Droid
         protected override void InitializeLastChance()
         {
             base.InitializeLastChance();
-        }
+
+			Mvx.RegisterSingleton<IPlatform>(new Platform());
+		}
 
 	}
 }

@@ -20,6 +20,10 @@ namespace RestaurantBilling.UI.iOS.Views
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UILabel VCPlatform { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UIButton VCViewBills { get; set; }
 
         void ReleaseDesignerOutlets ()
@@ -27,6 +31,11 @@ namespace RestaurantBilling.UI.iOS.Views
             if (VCCreateBill != null) {
                 VCCreateBill.Dispose ();
                 VCCreateBill = null;
+            }
+
+            if (VCPlatform != null) {
+                VCPlatform.Dispose ();
+                VCPlatform = null;
             }
 
             if (VCViewBills != null) {
