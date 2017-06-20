@@ -3,6 +3,7 @@ using MvvmCross.Platform;
 using RestaurantBilling.Core.Models;
 using RestaurantBilling.Core.Services;
 using System.Windows.Input;
+using System.Collections.Generic;
 
 namespace RestaurantBilling.Core.ViewModels
 {
@@ -14,6 +15,17 @@ namespace RestaurantBilling.Core.ViewModels
 		readonly IBillCalculator _calculation;
 		Bill _bill;
 		int _gratuity;
+
+		public ICommand PayComamnd
+		{
+			get
+			{
+				return new MvxCommand(() => ShowViewModel<PayViewModel>(new Dictionary<string, string>()
+				{
+					{"total", (Tip + SubTotal).ToString()}
+				}));
+			}
+		}
 
 		public string CustomerEmail
 		{
@@ -74,6 +86,8 @@ namespace RestaurantBilling.Core.ViewModels
 		public BillViewModel(IBillCalculator calculation)
 		{
 			_calculation = calculation;
+            //to ensure new BillViewModel() in testing code to work with non-null _bill
+			_bill = new Bill();
 		}
 
 		public ICommand NavBack
@@ -105,7 +119,7 @@ namespace RestaurantBilling.Core.ViewModels
 		public void Init(Bill bill = null)
 		{
 			_bill = bill ?? new Bill();
-			_gratuity = (int)_calculation.Gratuity(_bill.SubTotal, bill.Tip);
+			_gratuity = (int)_calculation.Gratuity(_bill.SubTotal, _bill.Tip);
 			RaiseAllPropertiesChanged();
 		}
 

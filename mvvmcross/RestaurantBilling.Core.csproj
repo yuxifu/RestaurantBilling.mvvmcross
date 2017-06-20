@@ -38,6 +38,7 @@
     <Compile Include="Repository.cs" />
     <Compile Include="ViewModels\AllBillsViewModel.cs" />
     <Compile Include="Services\IPlatform.cs" />
+    <Compile Include="ViewModels\PayViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="project.json" />
