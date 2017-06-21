@@ -23,29 +23,36 @@ namespace RestaurantBilling.UI.iOS
 
         public override bool FinishedLaunching(UIApplication application, NSDictionary launchOptions)
         {
-			// create a new window instance based on the screen size
-			Window = new UIWindow(UIScreen.MainScreen.Bounds);
+            // create a new window instance based on the screen size
+            Window = new UIWindow(UIScreen.MainScreen.Bounds);
 
-			// MvvmCross Mod Start---------------------------------------------
+            // MvvmCross Mod Start---------------------------------------------
 
-			// This class will determine how Views are shown - standard in this example.
-			var presenter = new MvxIosViewPresenter(this, Window);
+            // This class will determine how Views are shown - standard in this example.
+            var presenter = new MvxIosViewPresenter(this, Window);
 
-			// Init the Setup object, which initializes App.cs
-			var setup = new Setup(this, presenter);
-			setup.Initialize();
+            // Init the Setup object, which initializes App.cs
+            var setup = new Setup(this, presenter);
+            setup.Initialize();
 
-			// Use IoC to find and start the IMvxAppStart object.
-			// Remember, TipViewModel, inherited from MvxViewModel, was registered as the start object for IMvxAppStart in Core.App.cs 
-			var startup = Mvx.Resolve<IMvxAppStart>();
-			startup.Start();
+            // Use IoC to find and start the IMvxAppStart object.
+            // Remember, TipViewModel, inherited from MvxViewModel, was registered as the start object for IMvxAppStart in Core.App.cs 
+            var startup = Mvx.Resolve<IMvxAppStart>();
+            startup.Start();
 
-			// MvvmCross Mod End--------------------------------------------------
+            // MvvmCross Mod End--------------------------------------------------
 
-			// make the window visible
-			Window.MakeKeyAndVisible();
+            // make the window visible
+            Window.MakeKeyAndVisible();
 
-			return true;
+            // Newer version of Xamarin Studio and Visual Studio provide the
+            // ENABLE_TEST_CLOUD compiler directive in the Debug configuration,
+            // but not the Release configuration.
+#if ENABLE_TEST_CLOUD
+            Xamarin.Calabash.Start();
+#endif
+
+            return true;
         }
 
         public override void OnResignActivation(UIApplication application)

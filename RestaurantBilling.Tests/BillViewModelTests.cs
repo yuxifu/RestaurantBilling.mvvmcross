@@ -30,8 +30,10 @@ namespace RestaurantBilling.Tests
                           .Returns(42.0);
 
             //Act
-            var billViewModel = new BillViewModel(mockTipService.Object);
-            billViewModel.SubTotal = 12;
+            var billViewModel = new BillViewModel(mockTipService.Object)
+            {
+                SubTotal = 12
+            };
 
             //Assert
             Assert.AreEqual(42.0, billViewModel.Tip);
@@ -107,7 +109,7 @@ namespace RestaurantBilling.Tests
                 SubTotal = 10
             };
 
-            //act
+            //Act
             billViewModel.PayComamnd.Execute(null);
 
             //Assert
